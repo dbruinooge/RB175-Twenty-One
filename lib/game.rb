@@ -17,15 +17,16 @@ class Game
   end
 
   def start
-    loop do
-      prepare_round
-      player_turns
-      dealer_turn unless everyone_busted?
-      finish_round
-      break if human_player.broke? || !play_again?
-      reset
-    end
-    display_goodbye_message
+    prepare_round
+    # loop do
+    #   prepare_round
+    #   player_turns
+    #   dealer_turn unless everyone_busted?
+    #   finish_round
+    #   break if human_player.broke? || !play_again?
+    #   reset
+    # end
+    # display_goodbye_message
   end
 
   private
@@ -58,12 +59,14 @@ class Game
   end
 
   def prepare_round
-    collect_bets
+    collect_ai_bets
     deal_cards
   end
 
-  def collect_bets
-    players.each(&:make_bet)
+  def collect_ai_bets
+    1.upto (players.size - 1) do |i|
+      players[i].make_bet
+    end
   end
 
   def deal_cards

@@ -15,13 +15,15 @@
             <th>CARDS</th>
             <th>SCORE</th>
           </tr>
+          <% session[:game].players.each do |player| %>
           <tr>
-            <td>Derek</td>
-            <td>1000</td>
-            <td>500</td>
-            <td>7 spades, K hearts</td>
-            <td>17</td>
+            <td><%= player.name %></td>
+            <td><%= player.bankroll %></td>
+            <td><%= player.bet %></td>
+            <td><%= player.list_cards %></td>
+            <td><%= player.total %></td>
           </tr>
+          <% end %>
         </table>
       <% end %>
       <%== yield %>

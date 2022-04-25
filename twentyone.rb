@@ -36,7 +36,18 @@ end
 post "/players" do
   session[:game] = Game.new(params[:name], params[:players])
   session[:game].start
-  redirect "/play"
+  redirect "/bet"
+end
+
+# Betting screen
+get "/bet" do
+  @bankroll = session[:game].human_player.bankroll
+  erb :bet
+end
+
+# Process bet
+post "/bet" do
+
 end
 
 # Main game screen
