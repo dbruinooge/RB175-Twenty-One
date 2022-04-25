@@ -1,0 +1,19 @@
+<table>
+  <tr>
+    <th>PLAYER</th>
+    <th>BANKROLL</th>
+    <th>CURRENT BET</th>
+    <th>CARDS</th>
+    <th>SCORE</th>
+  </tr>
+  <% session[:game].players.each do |player| %>
+  <tr>
+    <td><%= player.name %></td>
+    <td><%= player.bankroll %></td>
+    <td><%= player.bet %></td>
+    <td><%= player.list_cards %></td>
+    <td><%= player.total %></td>
+  </tr>
+  <% end %>
+</table>
+<p></p>

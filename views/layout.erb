@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <title>Twenty-One Game</title>
+    <meta charset="UTF-8">
+  </head>
+  <body>
+    <main>
+      <% if session[:game] %>
+        <table>
+          <tr>
+            <th>PLAYER</th>
+            <th>BANKROLL</th>
+            <th>CURRENT BET</th>
+            <th>CARDS</th>
+            <th>SCORE</th>
+          </tr>
+          <tr>
+            <td>Derek</td>
+            <td>1000</td>
+            <td>500</td>
+            <td>7 spades, K hearts</td>
+            <td>17</td>
+          </tr>
+        </table>
+      <% end %>
+      <%== yield %>
+    </main>
+  </body>
+</html>
