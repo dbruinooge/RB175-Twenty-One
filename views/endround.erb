@@ -6,6 +6,7 @@
     <th>CARDS</th>
     <th>SCORE</th>
   </tr>
+
   <% session[:game].players.each do |player| %>
   <tr>
     <td><%= player.name %></td>
@@ -15,6 +16,7 @@
     <td><%= player.total %></td>
   </tr>
   <% end %>
+
   <tr>
     <td><%= @dealer.name %></td>
     <td></td>
@@ -26,11 +28,23 @@
 
 <p>Dealer has <%= @dealer_total %>.</p>
 <p>You have <%= @player_total %>.</p>
-<p><%= @display_winner %></p>
+<br>
+
+<p>-- Round Results --</p>
+<% @results_strings[:player_wins_losses].each do |result| %>
+  <p><%= result %></p>
+<% end %>
+
+<br>
+<% @results_strings[:broke_players].each do |broke_player| %>
+  <p><%= broke_player %></p>
+<% end %>
+
+<br>
 <% if session[:game].human_player.broke? %>
   <p>Sad and broke, you walk away from the table.</p>
   <form action = "/newgame" method = "get">
-    <button type = "submit">Play again</button>
+    <button type = "submit">Start over</button>
   </form>
 <% else %>
   <form action = "/bet" method = "get">

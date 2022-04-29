@@ -4,30 +4,14 @@ require "sinatra/content_for"
 require "tilt/erubis"
 require_relative './lib/game'
 
+# rubocop: disable Style/HashSyntax
 configure do
   enable :sessions
   set :session_secret, 'secret'
   set :erb, :escape_html => true
   also_reload "lib/game.rb"
 end
-
-helpers do
-  def display_winner
-    if session[:game].human_player.busted?
-      "You busted!"
-    elsif session[:game].human_player.total < session[:game].dealer.total
-      "You lose!"
-    elsif session[:game].human_player.total > session[:game].dealer.total
-      "You win!"
-    else
-      "It's a tie!"
-    end
-  end
-end
-
-before do
-
-end
+# rubocop: enable Style/HashSyntax
 
 get "/" do
   # if session[:game]
@@ -80,8 +64,8 @@ get "/endround" do
   @dealer = session[:game].dealer
   @dealer_total = session[:game].dealer.total
   @player_total = session[:game].human_player.total
-  @display_winner = display_winner
   session[:game].finish_round
+  @results_strings = session[:game].results_strings
   erb :endround
 end
 

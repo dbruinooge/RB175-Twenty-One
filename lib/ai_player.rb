@@ -7,7 +7,7 @@ class AIPlayer < Participant
 
   INITIAL_BANKROLL = 1000
 
-  @@name_list = FileLoad.file_lines_to_array('ai_names.txt')
+  @@name_list = FileLoad.file_lines_to_array('./public/data/ai_names.txt')
 
   def initialize
     super
