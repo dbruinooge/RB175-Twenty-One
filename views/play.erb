@@ -15,5 +15,19 @@
     <td><%= player.total %></td>
   </tr>
   <% end %>
+  <tr>
+    <td><%= @dealer.name %></td>
+    <td></td>
+    <td></td>
+    <td><%= @dealer.hand.first %></td>
+    <td><%= @dealer.first_card_total %></td>
+  </tr>
 </table>
-<p></p>
+
+<p>You have <%= @player_total %>. Dealer is showing <%= @dealer.first_card_total %>.</p>
+<p>Would you like to hit?</p>
+
+<form action = "/play" method = "post">
+  <input type = "submit" name = "choice" value = "Hit" />
+  <input type = "submit" name = "choice" value = "Stand"/>
+</form>

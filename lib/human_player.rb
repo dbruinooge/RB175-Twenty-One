@@ -12,17 +12,17 @@ class HumanPlayer < Participant
     @bankroll = INITIAL_BANKROLL
   end
 
-  def make_bet
-    chosen_bet = 0
-    loop do
-      display_bet_prompt
-      # chosen_bet = gets.chomp.to_i
-      chosen_bet = gets.chomp.delete(',').delete_prefix('$')
-                       .delete_suffix("s").delete_suffix(" dollar").to_i
-      break if chosen_bet.between?(1, @bankroll)
-      puts "Sorry, that's not a valid bet."
-    end
-    @bet = chosen_bet
+  def make_bet(chosen_bet)
+    # chosen_bet = 0
+    # loop do
+    #   display_bet_prompt
+    #   # chosen_bet = gets.chomp.to_i
+    #   chosen_bet = gets.chomp.delete(',').delete_prefix('$')
+    #                   .delete_suffix("s").delete_suffix(" dollar").to_i
+    #   break if chosen_bet.between?(1, @bankroll)
+    #   puts "Sorry, that's not a valid bet."
+    # end
+    @bet = chosen_bet.to_i
   end
 
   def hit?(dealer_first_card_total)

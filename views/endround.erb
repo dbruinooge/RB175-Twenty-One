@@ -1,0 +1,39 @@
+<table>
+  <tr>
+    <th>PLAYER</th>
+    <th>BANKROLL</th>
+    <th>CURRENT BET</th>
+    <th>CARDS</th>
+    <th>SCORE</th>
+  </tr>
+  <% session[:game].players.each do |player| %>
+  <tr>
+    <td><%= player.name %></td>
+    <td><%= player.bankroll %></td>
+    <td><%= player.bet %></td>
+    <td><%= player.list_cards %></td>
+    <td><%= player.total %></td>
+  </tr>
+  <% end %>
+  <tr>
+    <td><%= @dealer.name %></td>
+    <td></td>
+    <td></td>
+    <td><%= @dealer.list_cards %></td>
+    <td><%= @dealer.total %></td>
+  </tr>
+</table>
+
+<p>Dealer has <%= @dealer_total %>.</p>
+<p>You have <%= @player_total %>.</p>
+<p><%= @display_winner %></p>
+<% if session[:game].human_player.broke? %>
+  <p>Sad and broke, you walk away from the table.</p>
+  <form action = "/newgame" method = "get">
+    <button type = "submit">Play again</button>
+  </form>
+<% else %>
+  <form action = "/bet" method = "get">
+    <button type = "submit">Play another hand</button>
+  </form>
+<% end %>
